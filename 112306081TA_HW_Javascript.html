@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+</head>
+<body>
+
+<script>
+  // Function to perform addition
+  function add(x, y) {
+    return x + y;
+  }
+
+  // Function to perform subtraction
+  function subtract(x, y) {
+    return x - y;
+  }
+
+  // Function to perform multiplication
+  function multiply(x, y) {
+    return x * y;
+  }
+
+  // Function to perform division
+  function divide(x, y) {
+    if (y !== 0) {
+      return x / y;
+    } else {
+      return "Cannot divide by zero";
+    }
+  }
+
+  // Function to get user input for numbers and operation
+  function getUserInput() {
+    let num1 = parseFloat(prompt("Enter the first number:"));
+    let num2 = parseFloat(prompt("Enter the second number:"));
+
+    if (isNaN(num1) || isNaN(num2)) {
+      alert("Invalid input. Please enter numeric values.");
+      return getUserInput();
+    }
+
+    let operation = prompt("Enter the operation (+, -, *, /):");
+
+    if (!["+", "-", "*", "/"].includes(operation)) {
+      alert("Invalid operation. Please enter +, -, *, or /.");
+      return getUserInput();
+    }
+
+    return { num1, num2, operation };
+  }
+
+  // Main loop for calculator
+  while (true) {
+    let input = getUserInput();
+    let result;
+
+    switch (input.operation) {
+      case "+":
+        result = add(input.num1, input.num2);
+        break;
+      case "-":
+        result = subtract(input.num1, input.num2);
+        break;
+      case "*":
+        result = multiply(input.num1, input.num2);
+        break;
+      case "/":
+        result = divide(input.num1, input.num2);
+        break;
+    }
+
+    alert(`Result: ${result}`);
+
+    let shouldContinue = prompt("Do you want to perform another calculation? (yes/no)").toLowerCase();
+
+    if (shouldContinue !== 'yes') {
+      break;
+    }
+  }
+</script>
+
+</body>
+</html>
+
+
